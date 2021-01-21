@@ -40,6 +40,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-//TODO: create wedo chore model
-//TODO: create wedo list model

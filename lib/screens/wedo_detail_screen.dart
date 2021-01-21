@@ -48,7 +48,9 @@ class WeDoDetailScreen extends StatelessWidget {
                     '${Provider.of<ChoreData>(context).choreLists[index].chores.length} Chores')),
             Expanded(
               child: Container(
-                child: WeDoList(),
+                child: WeDoList(
+                  indexOfCurrentList: index,
+                ),
               ),
             ),
           ],

@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
           size: 40.0,
         ),
         onPressed: () {
-          //TODO: alert dialog to add new list
+          //TODO: (1)alert dialog box to add new list
           print('FIX ME');
           // showModalBottomSheet(
           //   shape: RoundedRectangleBorder(
