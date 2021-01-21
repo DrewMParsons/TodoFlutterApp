@@ -1,6 +1,7 @@
 class Chore {
   String title;
   bool isDone;
+  //TODO: add created by and finished by functionality
 
   Chore({this.title, this.isDone = false});
 

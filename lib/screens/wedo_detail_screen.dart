@@ -6,13 +6,17 @@ import 'add_wedo_screen.dart';
 
 class WeDoDetailScreen extends StatelessWidget {
   static const String id = 'list_detail_screen';
+  final int index;
+
+  const WeDoDetailScreen({Key key, @required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           //TODO: dynamically update Title in AppBar
-          title: Text('${Provider.of<ChoreData>(context).choreCount} Chores'),
+          title: Text(
+              '${Provider.of<ChoreData>(context).choreLists[index].title}'),
           centerTitle: true,
           backgroundColor: Theme.of(context).accentColor,
         ),
@@ -31,7 +35,7 @@ class WeDoDetailScreen extends StatelessWidget {
                 ),
               ),
               context: context,
-              builder: (context) => AddWeDoScreen(),
+              builder: (context) => AddWeDoScreen(index),
             );
             //Navigator.pushNamed(context, AddWeDoScreen.id);
           },
@@ -41,7 +45,7 @@ class WeDoDetailScreen extends StatelessWidget {
           children: [
             Container(
                 child: Text(
-                    '${Provider.of<ChoreData>(context).choreCount} Chores')),
+                    '${Provider.of<ChoreData>(context).choreLists[index].chores.length} Chores')),
             Expanded(
               child: Container(
                 child: WeDoList(),

@@ -5,6 +5,10 @@ import 'package:we_do_flutter_app/models/chore_data.dart';
 
 class AddWeDoScreen extends StatelessWidget {
   static const String id = 'add_wedo_screen';
+  int index;
+
+
+  AddWeDoScreen(this.index);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +50,7 @@ class AddWeDoScreen extends StatelessWidget {
               //TODO: fix null check and closing of the keyboard errors
               if (newWeDoTitle != null) {
                 Provider.of<ChoreData>(context, listen: false)
-                    .addChore(Chore(title: newWeDoTitle));
+                    .addChore(index,Chore(title: newWeDoTitle));
                 Navigator.pop(context);
               }
             },
