@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:we_do_flutter_app/models/chore_data.dart';
 import 'package:we_do_flutter_app/screens/add_wedo_screen.dart';
-import 'package:we_do_flutter_app/screens/create_list_screen.dart';
 import 'package:we_do_flutter_app/screens/home_screen.dart';
 import 'package:we_do_flutter_app/screens/wedo_detail_screen.dart';
 import 'package:we_do_flutter_app/screens/login_screen.dart';
@@ -28,11 +27,10 @@ class MyApp extends StatelessWidget {
         darkTheme: ThemeData.dark(),
         initialRoute: HomeScreen.id,
         routes: {
-          //WelcomeScreen.id: (context) => WelcomeScreen(),
-          //LoginScreen.id: (context) => LoginScreen(),
-          //RegistrationScreen.id: (context) => RegistrationScreen(),
+          WelcomeScreen.id: (context) => WelcomeScreen(),
+          LoginScreen.id: (context) => LoginScreen(),
+          RegistrationScreen.id: (context) => RegistrationScreen(),
           HomeScreen.id: (context) => HomeScreen(),
-          //CreateListScreen.id: (context) => CreateListScreen(),
           //WeDoDetailScreen.id: (context) => WeDoDetailScreen(0),
           //AddWeDoScreen.id: (context) => AddWeDoScreen(),
         },

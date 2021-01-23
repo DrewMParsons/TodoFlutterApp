@@ -23,7 +23,7 @@ class ListofLists extends StatelessWidget {
               title: Text(choreList.title),
               tileColor: orangeSwatch[colorCodes[getColorCode(index)]],
               onTap: () {
-                //TODO: open list_detail screen, send wedoList item as argument
+                //COMPLETE: open list_detail screen, send wedoList item as argument
                 Navigator.push(
                     context,
                     MaterialPageRoute(

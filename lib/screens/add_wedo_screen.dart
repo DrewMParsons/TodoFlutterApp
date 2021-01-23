@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:we_do_flutter_app/models/ChoreList.dart';
 import 'package:we_do_flutter_app/models/chore.dart';
 import 'package:we_do_flutter_app/models/chore_data.dart';
 
 class AddWeDoScreen extends StatelessWidget {
   static const String id = 'add_wedo_screen';
-  int index;
-
+  final int index;
 
   AddWeDoScreen(this.index);
 
@@ -17,7 +17,7 @@ class AddWeDoScreen extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            'New WeDo',
+            index == -1 ? 'New List' : 'New WeDo',
             style: TextStyle(
               fontSize: 30.0,
               fontWeight: FontWeight.bold,
@@ -49,8 +49,11 @@ class AddWeDoScreen extends StatelessWidget {
             onPressed: () {
               //TODO: fix null check and closing of the keyboard errors
               if (newWeDoTitle != null) {
-                Provider.of<ChoreData>(context, listen: false)
-                    .addChore(index,Chore(title: newWeDoTitle));
+                index == -1
+                    ? Provider.of<ChoreData>(context, listen: false)
+                        .addChoreList(ChoreList(title: newWeDoTitle))
+                    : Provider.of<ChoreData>(context, listen: false)
+                        .addChore(index, Chore(title: newWeDoTitle));
                 Navigator.pop(context);
               }
             },

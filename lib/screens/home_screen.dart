@@ -10,12 +10,14 @@ import 'package:we_do_flutter_app/widgets/wedo_list.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 //TODO: Create Home Screen
 class _HomeScreenState extends State<HomeScreen> {
+  int newList = -1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,19 +35,18 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         onPressed: () {
           //TODO: (1)alert dialog box to add new list
-          print('FIX ME');
-          // showModalBottomSheet(
-          //   shape: RoundedRectangleBorder(
-          //     borderRadius: BorderRadius.only(
-          //       topLeft: Radius.circular(20.0),
-          //       topRight: Radius.circular(20.0),
-          //     ),
-          //   ),
-          //   context: context,
-          //   builder: (context) => AddWeDoScreen(),
-          //   //TODO: fix addScreens- may need separate screens for add list/add wedo
-          // );
-          //Navigator.pushNamed(context, AddWeDoScreen.id);
+          showModalBottomSheet(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20.0),
+                topRight: Radius.circular(20.0),
+              ),
+            ),
+            context: context,
+            builder: (context) => AddWeDoScreen(newList),
+            //TODO: fix addScreens- may need separate screens for add list/add wedo
+          );
+          Navigator.pushNamed(context, AddWeDoScreen.id);
         },
       ),
       body: Container(
