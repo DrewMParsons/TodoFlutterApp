@@ -33,7 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
           size: 40.0,
         ),
         onPressed: () {
-          //TODO: (1)alert dialog box to add new list
           showModalBottomSheet(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
@@ -42,10 +41,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             context: context,
-            builder: (context) => AddWeDoScreen(newList),
-            //TODO: fix addScreens- may need separate screens for add list/add wedo
+            builder: (context) => AddWeDoScreen(),
+            routeSettings: RouteSettings(arguments: newList),
           );
-          Navigator.pushNamed(context, AddWeDoScreen.id);
         },
       ),
       body: Container(

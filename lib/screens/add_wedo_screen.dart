@@ -6,13 +6,11 @@ import 'package:we_do_flutter_app/models/chore_data.dart';
 
 class AddWeDoScreen extends StatelessWidget {
   static const String id = 'add_wedo_screen';
-  final int index;
-
-  AddWeDoScreen(this.index);
 
   @override
   Widget build(BuildContext context) {
     String newWeDoTitle;
+    int index = ModalRoute.of(context).settings.arguments;
     return Container(
       child: Column(
         children: [
@@ -55,6 +53,8 @@ class AddWeDoScreen extends StatelessWidget {
                     : Provider.of<ChoreData>(context, listen: false)
                         .addChore(index, Chore(title: newWeDoTitle));
                 Navigator.pop(context);
+              } else {
+                print('error');
               }
             },
           )

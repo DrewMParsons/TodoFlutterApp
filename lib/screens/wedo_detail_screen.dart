@@ -6,12 +6,10 @@ import 'add_wedo_screen.dart';
 
 class WeDoDetailScreen extends StatelessWidget {
   static const String id = 'list_detail_screen';
-  final int index;
-
-  const WeDoDetailScreen({Key key, @required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    int index = ModalRoute.of(context).settings.arguments;
     return Scaffold(
         appBar: AppBar(
           //TODO: dynamically update Title in AppBar
@@ -35,9 +33,9 @@ class WeDoDetailScreen extends StatelessWidget {
                 ),
               ),
               context: context,
-              builder: (context) => AddWeDoScreen(index),
+              builder: (context) => AddWeDoScreen(),
+              routeSettings: RouteSettings(arguments: index),
             );
-            //Navigator.pushNamed(context, AddWeDoScreen.id);
           },
         ),
         // TODO: Add sharable button- to appBar or body?

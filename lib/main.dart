@@ -31,8 +31,8 @@ class MyApp extends StatelessWidget {
           LoginScreen.id: (context) => LoginScreen(),
           RegistrationScreen.id: (context) => RegistrationScreen(),
           HomeScreen.id: (context) => HomeScreen(),
-          //WeDoDetailScreen.id: (context) => WeDoDetailScreen(0),
-          //AddWeDoScreen.id: (context) => AddWeDoScreen(),
+          WeDoDetailScreen.id: (context) => WeDoDetailScreen(),
+          AddWeDoScreen.id: (context) => AddWeDoScreen(),
         },
       ),
     );

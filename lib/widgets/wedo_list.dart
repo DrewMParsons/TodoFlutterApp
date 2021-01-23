@@ -35,6 +35,7 @@ class WeDoList extends StatelessWidget {
                 itemCount:
                     choreData.choreLists[indexOfCurrentList].chores.length,
               )
+            //Returns a Text widget if the current list is empty
             : Center(child: Text('Click Add Button to Create a new Chore'));
       },
     );

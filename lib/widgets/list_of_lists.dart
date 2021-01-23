@@ -25,12 +25,8 @@ class ListofLists extends StatelessWidget {
                     tileColor: orangeSwatch[colorCodes[getColorCode(index)]],
                     onTap: () {
                       //COMPLETE: open list_detail screen, send wedoList item as argument
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => WeDoDetailScreen(
-                                    index: index,
-                                  )));
+                      Navigator.pushNamed(context, WeDoDetailScreen.id,
+                          arguments: index);
 
                       print('selected');
                     },
@@ -41,6 +37,7 @@ class ListofLists extends StatelessWidget {
                   );
                 },
               )
+            //Returns a Text widget if the current user has no lists
             : Center(child: Text('Click Add Button to Create a List'));
       },
     );
