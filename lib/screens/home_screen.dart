@@ -22,8 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-            'User Name: ${Provider.of<ChoreData>(context).choreListCount}  Lists'),
+        title: Text('User Name:   Lists'),
         centerTitle: true,
         backgroundColor: Theme.of(context).primaryColor,
       ),

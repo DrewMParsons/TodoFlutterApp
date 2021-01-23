@@ -15,23 +15,27 @@ class WeDoList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ChoreData>(
       builder: (BuildContext context, choreData, Widget child) {
-        return ListView.builder(
-          itemBuilder: (context, index) {
-            ChoreList choreList = choreData.choreLists[indexOfCurrentList];
-            Chore chore = choreList.chores[index];
-            return ChoreTile(
-              isChecked: chore.isDone,
-              choreTitle: chore.title,
-              checkboxCallback: (checkboxState) {
-                choreData.toggleChore(chore);
-              },
-              longPressCallback: () {
-                choreData.deleteChore(indexOfCurrentList, chore);
-              },
-            );
-          },
-          itemCount: choreData.choreLists[indexOfCurrentList].chores.length,
-        );
+        return choreData.choreLists[indexOfCurrentList].choreCount() != 0
+            ? ListView.builder(
+                itemBuilder: (context, index) {
+                  ChoreList choreList =
+                      choreData.choreLists[indexOfCurrentList];
+                  Chore chore = choreList.chores[index];
+                  return ChoreTile(
+                    isChecked: chore.isDone,
+                    choreTitle: chore.title,
+                    checkboxCallback: (checkboxState) {
+                      choreData.toggleChore(chore);
+                    },
+                    longPressCallback: () {
+                      choreData.deleteChore(indexOfCurrentList, chore);
+                    },
+                  );
+                },
+                itemCount:
+                    choreData.choreLists[indexOfCurrentList].chores.length,
+              )
+            : Center(child: Text('Click Add Button to Create a new Chore'));
       },
     );
   }

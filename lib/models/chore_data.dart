@@ -5,10 +5,12 @@ import 'package:we_do_flutter_app/models/ChoreList.dart';
 import 'package:we_do_flutter_app/models/chore.dart';
 
 class ChoreData extends ChangeNotifier {
-  List<ChoreList> _choreListList = [
-    ChoreList(title: 'WORK'),
-    ChoreList(title: 'Home')
-  ];
+  List<ChoreList> _choreListList = [];
+
+  // List<ChoreList> _choreListList = [
+  //   ChoreList(title: 'WORK'),
+  //   ChoreList(title: 'Home')
+  // ];
 
   //ChoreList _choreList;
 
@@ -22,10 +24,9 @@ class ChoreData extends ChangeNotifier {
 
   //creates a 'window' to look at the list. Safe way of creating a getter for a list
   //and not allowing the use of .add
-  List<Chore> getChoreList(int index){
+  List<Chore> getChoreList(int index) {
     return choreLists[index].chores;
   }
-
 
   UnmodifiableListView<ChoreList> get choreLists =>
       UnmodifiableListView(_choreListList);
