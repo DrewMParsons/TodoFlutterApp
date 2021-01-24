@@ -4,6 +4,7 @@ import 'package:we_do_flutter_app/models/ChoreList.dart';
 import 'package:we_do_flutter_app/models/chore.dart';
 import 'package:we_do_flutter_app/models/chore_data.dart';
 import 'package:we_do_flutter_app/screens/add_wedo_screen.dart';
+import 'package:we_do_flutter_app/values/theme.dart';
 import 'package:we_do_flutter_app/widgets/chore_tile.dart';
 
 class WeDoList extends StatelessWidget {
@@ -22,32 +23,39 @@ class WeDoList extends StatelessWidget {
                   ChoreList choreList =
                       choreData.choreLists[indexOfCurrentList];
                   Chore chore = choreList.chores[index];
-                  return ChoreTile(
-                    isChecked: chore.isDone,
-                    choreTitle: chore.title,
-                    checkboxCallback: (checkboxState) {
-                      choreData.toggleChore(chore);
+                  return Dismissible(
+                    background: Container(
+                      color: orangeAccent,
+                    ),
+                    key: Key(chore.title),
+                    onDismissed: (direction) {
+                      choreData.deleteChore(indexOfCurrentList, chore);
+                      Scaffold.of(context).showSnackBar(
+                          SnackBar(content: Text('${chore.title} DELETED')));
                     },
-                    longPressCallback: ()
-                        //choreData.deleteChore(indexOfCurrentList, chore);
-                        async {
-                      //TODO: edit title with bottom navigation?
-
-                      String newTitle = await showModalBottomSheet(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20.0),
-                            topRight: Radius.circular(20.0),
+                    child: ChoreTile(
+                      isChecked: chore.isDone,
+                      choreTitle: chore.title,
+                      checkboxCallback: (checkboxState) {
+                        choreData.toggleChore(chore);
+                      },
+                      longPressCallback: () async {
+                        String newTitle = await showModalBottomSheet(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20.0),
+                              topRight: Radius.circular(20.0),
+                            ),
                           ),
-                        ),
-                        context: context,
-                        isDismissible: false,
-                        builder: (context) => AddWeDoScreen(),
-                        routeSettings: RouteSettings(arguments: -2),
-                      );
-                      print(newTitle);
-                      choreData.updateChore(chore, newTitle);
-                    },
+                          context: context,
+                          isDismissible: false,
+                          builder: (context) => AddWeDoScreen(),
+                          routeSettings: RouteSettings(arguments: -2),
+                        );
+                        print(newTitle);
+                        choreData.updateChore(chore, newTitle);
+                      },
+                    ),
                   );
                 },
                 itemCount:

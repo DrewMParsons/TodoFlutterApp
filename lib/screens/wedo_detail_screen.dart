@@ -16,7 +16,7 @@ class WeDoDetailScreen extends StatelessWidget {
           title: Text(
               '${Provider.of<ChoreData>(context).choreLists[index].title}'),
           centerTitle: true,
-          backgroundColor: Theme.of(context).accentColor,
+          backgroundColor: Theme.of(context).primaryColor,
         ),
         backgroundColor: Theme.of(context).backgroundColor,
         floatingActionButton: FloatingActionButton(
