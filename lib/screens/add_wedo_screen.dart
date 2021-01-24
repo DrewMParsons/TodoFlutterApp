@@ -11,11 +11,16 @@ class AddWeDoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     String newWeDoTitle;
     int index = ModalRoute.of(context).settings.arguments;
+
     return Container(
       child: Column(
         children: [
           Text(
-            index == -1 ? 'New List' : 'New WeDo',
+            (index == -2)
+                ? 'Edit Title'
+                : (index == -1)
+                    ? 'New List'
+                    : 'New WeDo',
             style: TextStyle(
               fontSize: 30.0,
               fontWeight: FontWeight.bold,
@@ -43,18 +48,20 @@ class AddWeDoScreen extends StatelessWidget {
             style: TextButton.styleFrom(
                 primary: Colors.white,
                 backgroundColor: Theme.of(context).accentColor),
-            child: Text('ADD'),
+            child: Text(index == -2 ? 'EDIT' : 'ADD'),
             onPressed: () {
               //TODO: fix null check and closing of the keyboard errors
               if (newWeDoTitle != null) {
-                index == -1
-                    ? Provider.of<ChoreData>(context, listen: false)
-                        .addChoreList(ChoreList(title: newWeDoTitle))
-                    : Provider.of<ChoreData>(context, listen: false)
-                        .addChore(index, Chore(title: newWeDoTitle));
-                Navigator.pop(context);
-              } else {
-                print('error');
+                if (index == -2) {
+                  Navigator.pop(context, newWeDoTitle);
+                } else {
+                  index == -1
+                      ? Provider.of<ChoreData>(context, listen: false)
+                          .addChoreList(ChoreList(title: newWeDoTitle))
+                      : Provider.of<ChoreData>(context, listen: false)
+                          .addChore(index, Chore(title: newWeDoTitle));
+                  Navigator.pop(context);
+                }
               }
             },
           )

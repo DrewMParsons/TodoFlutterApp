@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:we_do_flutter_app/models/ChoreList.dart';
 import 'package:we_do_flutter_app/models/chore_data.dart';
+import 'package:we_do_flutter_app/screens/add_wedo_screen.dart';
 import 'package:we_do_flutter_app/screens/wedo_detail_screen.dart';
 import 'package:we_do_flutter_app/values/theme.dart';
 
@@ -25,14 +26,28 @@ class ListofLists extends StatelessWidget {
                     tileColor: orangeSwatch[colorCodes[getColorCode(index)]],
                     onTap: () {
                       //COMPLETE: open list_detail screen, send wedoList item as argument
+
                       Navigator.pushNamed(context, WeDoDetailScreen.id,
                           arguments: index);
-
                       print('selected');
                     },
-                    onLongPress: () {
+                    onLongPress: () async {
                       //TODO: edit title with bottom navigation?
-                      print('long pressed');
+
+                      String newTitle = await showModalBottomSheet(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20.0),
+                            topRight: Radius.circular(20.0),
+                          ),
+                        ),
+                        context: context,
+                        isDismissible: false,
+                        builder: (context) => AddWeDoScreen(),
+                        routeSettings: RouteSettings(arguments: -2),
+                      );
+                      print(newTitle);
+                      choreData.updateChoreList(choreList, newTitle);
                     },
                   );
                 },

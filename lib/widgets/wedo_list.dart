@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:we_do_flutter_app/models/ChoreList.dart';
 import 'package:we_do_flutter_app/models/chore.dart';
 import 'package:we_do_flutter_app/models/chore_data.dart';
+import 'package:we_do_flutter_app/screens/add_wedo_screen.dart';
 import 'package:we_do_flutter_app/widgets/chore_tile.dart';
 
 class WeDoList extends StatelessWidget {
@@ -27,8 +28,25 @@ class WeDoList extends StatelessWidget {
                     checkboxCallback: (checkboxState) {
                       choreData.toggleChore(chore);
                     },
-                    longPressCallback: () {
-                      choreData.deleteChore(indexOfCurrentList, chore);
+                    longPressCallback: ()
+                        //choreData.deleteChore(indexOfCurrentList, chore);
+                        async {
+                      //TODO: edit title with bottom navigation?
+
+                      String newTitle = await showModalBottomSheet(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20.0),
+                            topRight: Radius.circular(20.0),
+                          ),
+                        ),
+                        context: context,
+                        isDismissible: false,
+                        builder: (context) => AddWeDoScreen(),
+                        routeSettings: RouteSettings(arguments: -2),
+                      );
+                      print(newTitle);
+                      choreData.updateChore(chore, newTitle);
                     },
                   );
                 },

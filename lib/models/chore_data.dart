@@ -41,6 +41,11 @@ class ChoreData extends ChangeNotifier {
     notifyListeners();
   }
 
+  void updateChore(Chore chore, String newTitle) {
+    chore.updateChore(newTitle);
+    notifyListeners();
+  }
+
   void deleteChore(int index, Chore chore) {
     _choreListList[index].deleteChore(chore);
     notifyListeners();
