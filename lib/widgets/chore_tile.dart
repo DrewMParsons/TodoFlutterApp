@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:we_do_flutter_app/values/theme.dart';
 
 class ChoreTile extends StatelessWidget {
   final bool isChecked;
@@ -21,7 +22,7 @@ class ChoreTile extends StatelessWidget {
             decoration: isChecked ? TextDecoration.lineThrough : null),
       ),
       trailing: Checkbox(
-        activeColor: Colors.lightBlueAccent,
+        activeColor: yellowAccent,
         value: isChecked,
         onChanged: checkboxCallback,
       ),

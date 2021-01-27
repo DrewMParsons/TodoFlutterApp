@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       backgroundColor: Theme.of(context).backgroundColor,
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).accentColor,
         child: Icon(
           Icons.add,
           size: 40.0,
@@ -41,7 +42,12 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             context: context,
-            builder: (context) => AddWeDoScreen(),
+            isScrollControlled: true,
+            builder: (context) => SingleChildScrollView(
+                child: Container(
+                    padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom),
+                    child: AddWeDoScreen())),
             routeSettings: RouteSettings(arguments: newList),
           );
         },

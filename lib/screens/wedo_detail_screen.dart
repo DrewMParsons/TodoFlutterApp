@@ -20,6 +20,7 @@ class WeDoDetailScreen extends StatelessWidget {
         ),
         backgroundColor: Theme.of(context).backgroundColor,
         floatingActionButton: FloatingActionButton(
+          backgroundColor: Theme.of(context).accentColor,
           child: Icon(
             Icons.add,
             size: 40.0,

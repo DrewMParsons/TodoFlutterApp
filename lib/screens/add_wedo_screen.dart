@@ -6,10 +6,10 @@ import 'package:we_do_flutter_app/models/chore_data.dart';
 
 class AddWeDoScreen extends StatelessWidget {
   static const String id = 'add_wedo_screen';
+  static String newWeDoTitle = '';
 
   @override
   Widget build(BuildContext context) {
-    String newWeDoTitle;
     int index = ModalRoute.of(context).settings.arguments;
 
     return Container(
@@ -40,7 +40,7 @@ class AddWeDoScreen extends StatelessWidget {
                     color: Theme.of(context).accentColor, width: 4.5),
               ),
             ),
-            onChanged: (value) {
+            onChanged: (String value) {
               newWeDoTitle = value;
             },
           ),
@@ -50,7 +50,8 @@ class AddWeDoScreen extends StatelessWidget {
                 backgroundColor: Theme.of(context).accentColor),
             child: Text(index == -2 ? 'EDIT' : 'ADD'),
             onPressed: () {
-              //TODO: fix null check and closing of the keyboard errors
+              //TODO: textfield is not reset after entry.  so clicking add again will create another item of same name
+              // happening because we initialize as a static variable to fix null entry error.
               if (newWeDoTitle != null) {
                 if (index == -2) {
                   Navigator.pop(context, newWeDoTitle);
@@ -62,6 +63,8 @@ class AddWeDoScreen extends StatelessWidget {
                           .addChore(index, Chore(title: newWeDoTitle));
                   Navigator.pop(context);
                 }
+              } else {
+                print('error');
               }
             },
           )

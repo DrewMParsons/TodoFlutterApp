@@ -24,7 +24,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'We Do',
         theme: orangeTheme,
-        darkTheme: ThemeData.dark(),
+        darkTheme: ThemeData.dark().copyWith(
+          accentColor: orangeAccent,
+          primaryColor: orangePrimary,
+        ),
         initialRoute: HomeScreen.id,
         routes: {
           WelcomeScreen.id: (context) => WelcomeScreen(),
