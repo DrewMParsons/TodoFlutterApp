@@ -13,6 +13,7 @@ class ListofLists extends StatelessWidget {
   int getColorCode(int index) => index.remainder(colorCodes.length);
   @override
   Widget build(BuildContext context) {
+    int numberOfLists = 0;
     return Consumer<ChoreData>(
       builder: (BuildContext context, choreData, Widget child) {
         return choreData.choreLists.isNotEmpty

@@ -15,14 +15,17 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-//TODO: Create Home Screen
 class _HomeScreenState extends State<HomeScreen> {
-  int newList = -1;
+  final int newList = -1;
+
   @override
   Widget build(BuildContext context) {
+    int numberOfLists = Provider.of<ChoreData>(context).choreListCount;
     return Scaffold(
       appBar: AppBar(
-        title: Text('User Name:   Lists'),
+        title: numberOfLists == 1
+            ? Text('User Name:  $numberOfLists List')
+            : Text('User Name:  $numberOfLists Lists'),
         centerTitle: true,
         backgroundColor: Theme.of(context).primaryColor,
       ),

@@ -10,11 +10,14 @@ class WeDoDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int index = ModalRoute.of(context).settings.arguments;
+    int numberOfChores =
+        Provider.of<ChoreData>(context).choreLists[index].chores.length;
+    String choreListTitle =
+        Provider.of<ChoreData>(context).choreLists[index].title;
     return Scaffold(
         appBar: AppBar(
           //TODO: dynamically update Title in AppBar
-          title: Text(
-              '${Provider.of<ChoreData>(context).choreLists[index].title}'),
+          title: Text(choreListTitle),
           centerTitle: true,
           backgroundColor: Theme.of(context).primaryColor,
         ),
@@ -43,8 +46,9 @@ class WeDoDetailScreen extends StatelessWidget {
         body: Column(
           children: [
             Container(
-                child: Text(
-                    '${Provider.of<ChoreData>(context).choreLists[index].chores.length} Chores')),
+                child: numberOfChores == 1
+                    ? Text('$numberOfChores Chore')
+                    : Text('$numberOfChores Chores')),
             Expanded(
               child: Container(
                 child: WeDoList(
