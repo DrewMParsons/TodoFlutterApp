@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:we_do_flutter_app/models/ChoreList.dart';
 import 'package:we_do_flutter_app/models/chore.dart';
 import 'package:we_do_flutter_app/models/chore_data.dart';
+import 'package:we_do_flutter_app/values/constants.dart';
 
 class AddWeDoScreen extends StatefulWidget {
   static const String id = 'add_wedo_screen';
@@ -21,9 +22,9 @@ class _AddWeDoScreenState extends State<AddWeDoScreen> {
       child: Column(
         children: [
           Text(
-            (index == -2)
+            (index == editItem)
                 ? 'Edit Title'
-                : (index == -1)
+                : (index == newItem)
                     ? 'New List'
                     : 'New WeDo',
             style: TextStyle(
@@ -53,15 +54,13 @@ class _AddWeDoScreenState extends State<AddWeDoScreen> {
             style: TextButton.styleFrom(
                 primary: Colors.white,
                 backgroundColor: Theme.of(context).accentColor),
-            child: Text(index == -2 ? 'EDIT' : 'ADD'),
+            child: Text(index == editItem ? 'EDIT' : 'ADD'),
             onPressed: () async {
-              //TODO: textfield is not reset after entry.  so clicking add again will create another item of same name
-              // happening because we initialize as a static variable to fix null entry error.
               if (newWeDoTitle != null) {
-                if (index == -2) {
+                if (index == editItem) {
                   Navigator.pop(context, newWeDoTitle);
                 } else {
-                  index == -1
+                  index == newItem
                       ? Provider.of<ChoreData>(context, listen: false)
                           .addChoreList(ChoreList(title: newWeDoTitle))
                       : Provider.of<ChoreData>(context, listen: false)

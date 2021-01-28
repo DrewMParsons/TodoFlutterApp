@@ -4,6 +4,7 @@ import 'package:we_do_flutter_app/models/ChoreList.dart';
 import 'package:we_do_flutter_app/models/chore_data.dart';
 import 'package:we_do_flutter_app/screens/add_wedo_screen.dart';
 import 'package:we_do_flutter_app/screens/wedo_detail_screen.dart';
+import 'package:we_do_flutter_app/values/constants.dart';
 import 'package:we_do_flutter_app/values/theme.dart';
 
 class ListofLists extends StatelessWidget {
@@ -54,7 +55,7 @@ class ListofLists extends StatelessWidget {
                           context: context,
                           isDismissible: false,
                           builder: (context) => AddWeDoScreen(),
-                          routeSettings: RouteSettings(arguments: -2),
+                          routeSettings: RouteSettings(arguments: editItem),
                         );
                         print(newTitle);
                         choreData.updateChoreList(choreList, newTitle);

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:we_do_flutter_app/values/theme.dart';
 
+const int newItem = -1;
+const int editItem = -2;
+
 const textFileDecoration = InputDecoration(
   hintText: 'Enter a value',
   hintStyle: TextStyle(color: Colors.black26),

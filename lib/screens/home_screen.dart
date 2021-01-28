@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:we_do_flutter_app/models/chore_data.dart';
 import 'package:we_do_flutter_app/screens/add_wedo_screen.dart';
 import 'package:we_do_flutter_app/screens/wedo_detail_screen.dart';
+import 'package:we_do_flutter_app/values/constants.dart';
 import 'package:we_do_flutter_app/values/theme.dart';
 import 'package:we_do_flutter_app/widgets/list_of_lists.dart';
 import 'package:we_do_flutter_app/widgets/wedo_list.dart';
@@ -16,8 +17,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final int newList = -1;
-
   @override
   Widget build(BuildContext context) {
     int numberOfLists = Provider.of<ChoreData>(context).choreListCount;
@@ -51,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: EdgeInsets.only(
                         bottom: MediaQuery.of(context).viewInsets.bottom),
                     child: AddWeDoScreen())),
-            routeSettings: RouteSettings(arguments: newList),
+            routeSettings: RouteSettings(arguments: newItem),
           );
         },
       ),
