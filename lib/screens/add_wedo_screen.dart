@@ -4,10 +4,15 @@ import 'package:we_do_flutter_app/models/ChoreList.dart';
 import 'package:we_do_flutter_app/models/chore.dart';
 import 'package:we_do_flutter_app/models/chore_data.dart';
 
-class AddWeDoScreen extends StatelessWidget {
+class AddWeDoScreen extends StatefulWidget {
   static const String id = 'add_wedo_screen';
-  static String newWeDoTitle = '';
 
+  @override
+  _AddWeDoScreenState createState() => _AddWeDoScreenState();
+}
+
+class _AddWeDoScreenState extends State<AddWeDoScreen> {
+  String newWeDoTitle;
   @override
   Widget build(BuildContext context) {
     int index = ModalRoute.of(context).settings.arguments;
@@ -49,7 +54,7 @@ class AddWeDoScreen extends StatelessWidget {
                 primary: Colors.white,
                 backgroundColor: Theme.of(context).accentColor),
             child: Text(index == -2 ? 'EDIT' : 'ADD'),
-            onPressed: () {
+            onPressed: () async {
               //TODO: textfield is not reset after entry.  so clicking add again will create another item of same name
               // happening because we initialize as a static variable to fix null entry error.
               if (newWeDoTitle != null) {
@@ -64,7 +69,23 @@ class AddWeDoScreen extends StatelessWidget {
                   Navigator.pop(context);
                 }
               } else {
-                print('error');
+                await showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Error'),
+                      content: Text('Title cannot be empty'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
               }
             },
           )
