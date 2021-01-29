@@ -16,7 +16,6 @@ class WeDoDetailScreen extends StatelessWidget {
         Provider.of<ChoreData>(context).choreLists[index].title;
     return Scaffold(
         appBar: AppBar(
-          //TODO: dynamically update Title in AppBar
           title: Text(choreListTitle),
           centerTitle: true,
           backgroundColor: Theme.of(context).primaryColor,

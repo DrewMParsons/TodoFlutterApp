@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:we_do_flutter_app/screens/home_screen.dart';
 import 'package:we_do_flutter_app/values/constants.dart';
 import 'package:we_do_flutter_app/widgets/button_main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const String id = 'registration_screen';

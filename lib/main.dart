@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           accentColor: orangeAccent,
           primaryColor: orangePrimary,
         ),
-        initialRoute: HomeScreen.id,
+        initialRoute: WelcomeScreen.id,
         routes: {
           WelcomeScreen.id: (context) => WelcomeScreen(),
           LoginScreen.id: (context) => LoginScreen(),
