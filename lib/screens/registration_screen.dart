@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:we_do_flutter_app/screens/home_screen.dart';
+import 'package:we_do_flutter_app/util/authentication.dart';
 import 'package:we_do_flutter_app/values/constants.dart';
 import 'package:we_do_flutter_app/widgets/button_main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -78,8 +79,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
             ButtonMain(
               buttonText: 'Register',
-              onPress: () {
-                Navigator.pushNamed(context, HomeScreen.id);
+              onPress: () async {
+                try {
+                  final newUser =
+                      await Authentication().createUser(email, password);
+                  if (newUser != null) {
+                    User currentUser = newUser.user;
+                    Navigator.pushNamed(context, HomeScreen.id,
+                        arguments: {'currentUser': currentUser});
+                  }
+                } catch (e) {
+                  print(e);
+                }
+                //
               },
             ),
           ],

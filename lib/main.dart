@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:we_do_flutter_app/models/chore_data.dart';
@@ -10,7 +11,9 @@ import 'package:we_do_flutter_app/screens/welcome_screen.dart';
 import 'package:we_do_flutter_app/util/theme_notifier.dart';
 import 'package:we_do_flutter_app/values/theme.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(
     MyApp(),
   );

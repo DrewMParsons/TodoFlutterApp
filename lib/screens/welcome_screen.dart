@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:we_do_flutter_app/screens/login_screen.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:we_do_flutter_app/screens/registration_screen.dart';
+import 'package:we_do_flutter_app/util/authentication.dart';
 import 'package:we_do_flutter_app/values/theme.dart';
 import 'package:we_do_flutter_app/widgets/button_main.dart';
 
@@ -63,6 +64,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 buttonText: 'Register',
                 onPress: () {
                   print('register pressed');
+                  Authentication().signOut();
                   Navigator.pushNamed(context, RegistrationScreen.id);
                 }),
           ],

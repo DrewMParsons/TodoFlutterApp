@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:we_do_flutter_app/models/chore_data.dart';
 import 'package:we_do_flutter_app/screens/add_wedo_screen.dart';
 import 'package:we_do_flutter_app/screens/wedo_detail_screen.dart';
+import 'package:we_do_flutter_app/screens/welcome_screen.dart';
+import 'package:we_do_flutter_app/util/authentication.dart';
 import 'package:we_do_flutter_app/values/constants.dart';
 import 'package:we_do_flutter_app/values/theme.dart';
 import 'package:we_do_flutter_app/widgets/list_of_lists.dart';
@@ -17,14 +20,32 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  User currentUser;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final Map args = ModalRoute.of(context).settings.arguments;
+    if (args != null) {
+      currentUser = args['currentUser'];
+    }
     int numberOfLists = Provider.of<ChoreData>(context).choreListCount;
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.clear),
+          onPressed: () {
+            Authentication().signOut();
+            Navigator.pushNamed(context, WelcomeScreen.id);
+          },
+        ),
         title: numberOfLists == 1
-            ? Text('User Name:  $numberOfLists List')
-            : Text('User Name:  $numberOfLists Lists'),
+            ? Text('${currentUser.email}  $numberOfLists List')
+            : Text('${currentUser.email}  $numberOfLists Lists'),
         centerTitle: true,
         backgroundColor: Theme.of(context).primaryColor,
       ),

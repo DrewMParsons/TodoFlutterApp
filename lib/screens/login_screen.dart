@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:we_do_flutter_app/util/authentication.dart';
 import 'package:we_do_flutter_app/values/constants.dart';
 import 'package:we_do_flutter_app/widgets/button_main.dart';
 
@@ -19,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 50.0),
+        padding: EdgeInsets.all(10.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -76,11 +78,39 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(
               height: 20.0,
             ),
-            ButtonMain(
-              buttonText: 'Login',
-              onPress: () {
-                Navigator.pushNamed(context, HomeScreen.id);
-              },
+            Builder(
+              builder: (context) => ButtonMain(
+                buttonText: 'Login',
+                onPress: () async {
+                  //TODO: error handling is not clean
+                  try {
+                    await Authentication().signInUser(email, password);
+                    User currentUser = Authentication().userCredential.user;
+                    if (currentUser != null) {
+                      Navigator.pushNamed(context, HomeScreen.id,
+                          arguments: {'currentUser': currentUser});
+                    }
+                  } catch (e) {
+                    final snackBar = SnackBar(content: Text(e.toString()));
+                    Scaffold.of(context).showSnackBar(snackBar);
+                  }
+
+                  // final newUser =
+                  //     await Authentication().signInUser(email, password);
+                  // if (newUser.runtimeType == String) {
+                  //   print(newUser);
+                  //   final snackBar = SnackBar(
+                  //     content: Text(newUser),
+                  //   );
+                  //   Scaffold.of(context).showSnackBar(snackBar);
+                  // } else if (newUser != null) {
+                  //   User currentUser = newUser.user;
+                  //   Navigator.pushNamed(context, HomeScreen.id,
+                  //       arguments: {'currentUser': currentUser});
+                  // }
+                  //
+                },
+              ),
             ),
           ],
         ),
