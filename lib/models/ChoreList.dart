@@ -3,6 +3,7 @@ import 'package:we_do_flutter_app/models/chore.dart';
 class ChoreList {
   //TODO: add created by field
   String title;
+  String id;
   List<Chore> chores = [];
   ChoreList({this.title});
 

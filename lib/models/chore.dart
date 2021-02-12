@@ -1,5 +1,6 @@
 class Chore {
   String title;
+  String id;
   bool isDone;
   //TODO: add created by and finished by functionality
 
