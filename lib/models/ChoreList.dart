@@ -4,8 +4,14 @@ class ChoreList {
   //TODO: add created by field
   String title;
   String id;
+  String owner;
   List<Chore> chores = [];
-  ChoreList({this.title});
+  ChoreList({this.title, this.owner});
+
+  ChoreList.fromJson(Map<String, dynamic> json) {
+    owner = json['owner'];
+    title = json['title'];
+  }
 
   void addChore(Chore chore) {
     chores.add(chore);

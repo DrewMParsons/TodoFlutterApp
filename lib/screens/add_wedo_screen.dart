@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:we_do_flutter_app/models/ChoreList.dart';
 import 'package:we_do_flutter_app/models/chore.dart';
-import 'package:we_do_flutter_app/models/chore_data.dart';
+import 'package:we_do_flutter_app/models/ChoreData.dart';
+import 'package:we_do_flutter_app/util/authentication.dart';
 import 'package:we_do_flutter_app/values/constants.dart';
 
 class AddWeDoScreen extends StatefulWidget {
@@ -15,6 +16,7 @@ class AddWeDoScreen extends StatefulWidget {
 
 class _AddWeDoScreenState extends State<AddWeDoScreen> {
   String newWeDoTitle;
+  String owner = Authentication().auth.currentUser.uid;
   @override
   Widget build(BuildContext context) {
     int index = ModalRoute.of(context).settings.arguments;
@@ -63,7 +65,8 @@ class _AddWeDoScreenState extends State<AddWeDoScreen> {
                 } else {
                   index == newItem
                       ? Provider.of<ChoreData>(context, listen: false)
-                          .addChoreList(ChoreList(title: newWeDoTitle))
+                          .addChoreList(
+                              ChoreList(title: newWeDoTitle, owner: owner))
                       : Provider.of<ChoreData>(context, listen: false)
                           .addChore(index, Chore(title: newWeDoTitle));
                   Navigator.pop(context);

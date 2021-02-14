@@ -6,6 +6,11 @@ class Chore {
 
   Chore({this.title, this.isDone = false});
 
+  Chore.fromJson(Map<String, dynamic> json) {
+    isDone = json['completed'];
+    title = json['title'];
+  }
+
   void toggleDone() {
     isDone = !isDone;
   }

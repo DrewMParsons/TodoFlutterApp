@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:we_do_flutter_app/models/chore_data.dart';
+import 'package:we_do_flutter_app/models/ChoreData.dart';
 import 'package:we_do_flutter_app/screens/add_wedo_screen.dart';
 import 'package:we_do_flutter_app/screens/wedo_detail_screen.dart';
 import 'package:we_do_flutter_app/screens/welcome_screen.dart';
@@ -24,15 +24,20 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     // TODO: implement initState
+    currentUser = Authentication().auth.currentUser;
+    ChoreData().getListofLists(currentUser);
+    ChoreData().getUserLists();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final Map args = ModalRoute.of(context).settings.arguments;
-    if (args != null) {
-      currentUser = args['currentUser'];
-    }
+    //final Map args = ModalRoute.of(context).settings.arguments;
+    //final User currentUser = Authentication().auth.currentUser;
+    //ChoreData().getList(currentUser);
+    // if (args != null) {
+    //   currentUser = args['currentUser'];
+    // }
     int numberOfLists = Provider.of<ChoreData>(context).choreListCount;
     return Scaffold(
       appBar: AppBar(

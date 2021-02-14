@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:we_do_flutter_app/models/chore_data.dart';
+import 'package:we_do_flutter_app/models/ChoreData.dart';
 import 'package:we_do_flutter_app/widgets/wedo_list.dart';
 import 'add_wedo_screen.dart';
 
