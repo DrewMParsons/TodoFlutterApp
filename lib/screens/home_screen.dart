@@ -44,8 +44,8 @@ class _HomeScreenState extends State<HomeScreen> {
           },
         ),
         title: numberOfLists == 1
-            ? Text('${currentUser.email}  $numberOfLists List')
-            : Text('${currentUser.email}  $numberOfLists Lists'),
+            ? Text('${currentUser.displayName}  $numberOfLists List')
+            : Text('${currentUser.displayName}  $numberOfLists Lists'),
         centerTitle: true,
         backgroundColor: Theme.of(context).primaryColor,
       ),

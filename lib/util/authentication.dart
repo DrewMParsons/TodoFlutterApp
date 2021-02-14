@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Authentication {
-  FirebaseAuth auth = FirebaseAuth.instance;
-  UserCredential userCredential;
-  User user;
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  //UserCredential userCredential;
+  //User currentUser;
   //TODO: make this user the logged in user?
 
   void signOut() {
@@ -14,11 +14,13 @@ class Authentication {
     }
   }
 
-  Future<UserCredential> createUser(String email, String password) async {
+  Future createUser(String email, String password, String displayName) async {
+    User currentUser;
     try {
-      userCredential = await auth.createUserWithEmailAndPassword(
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      return userCredential;
+      currentUser = userCredential.user;
+      await currentUser.updateProfile(displayName: displayName);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
@@ -28,17 +30,24 @@ class Authentication {
     } catch (e) {
       print(e);
     }
-    user = userCredential.user;
-    return userCredential;
+    await currentUser.reload();
+    currentUser = auth.currentUser;
+    return currentUser;
+
+    // //User u = uc.user;
+    // u.updateProfile(displayName: displayName);
+    // await user.reload();
+    // print(user.displayName);
+    // return user;
   }
 
   //TODO: signin error handling is a bit wonky
   Future signInUser(String email, String password) async {
     try {
-      userCredential = await auth.signInWithEmailAndPassword(
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(
           email: email, password: password);
-      user = userCredential.user;
-      return userCredential;
+      User currentUser = userCredential.user;
+      return currentUser;
     } on FirebaseAuthException catch (e) {
       throw Exception(e.message);
     }
