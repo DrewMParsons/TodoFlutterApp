@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   User currentUser;
   @override
   void initState() {
-    // TODO: implement initState
+    //TODO: move all of this to another class?
     currentUser = Authentication().auth.currentUser;
     ChoreData().getListofLists(currentUser);
     ChoreData().getUserLists();
